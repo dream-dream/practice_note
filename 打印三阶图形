@@ -1,9 +1,9 @@
 emp = ' '
 star = '*'
-first = emp * 3 + star + emp * 2
-second = (emp + star) * 3 + emp * 2
-third = (star + emp) * 4
+first = emp * 4 + star
+second = emp * 2 + (star + emp) * 3
+third = (star + emp) * 5
 obj = first + '\n' + second + '\n'
-obj_re = obj.join('')
+# obj_re = obj.join('')
 ret = first + '\n' + second + '\n' + third + '\n' + second + '\n' + first
 print(ret)
