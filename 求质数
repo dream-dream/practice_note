@@ -1,0 +1,24 @@
+#  输出1-1000所有质数（除了'1'和它本身，它除以其他数都得不到整数：如2，3, 5）
+#  看到'任何'要想到穷举；编程思想flag（标识）
+#  一个整数除以一个小数也能得到一个整数，那么这个任何其他数就包括整数和小数;如果没有小数，不考虑小数的情况下，就只有整数，要如何穷举
+def get_num(arg):
+    if type(arg) == int:
+        for i in range(2, 100):  # 这里的range只能循环遍历出所有的整数，这样还是没有办法得到'任何其他数'，只能先写成这样了
+            a, b = divmod(arg, i)
+            if i != arg:
+                if b == 0:
+                    flag = True
+                    return flag
+                else:
+                    flag = False
+        return flag
+    else:
+        raise TypeError
+
+
+for i in range(1, 1000):
+    obj = get_num(i)
+    if obj == False:
+        print(i)
+
+我只能写到这里了，除了‘任何数’这部分，其他的逻辑我都测了，没啥问题，这个任何数，实在是想不到要怎么弄出来了
