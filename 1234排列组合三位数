@@ -27,3 +27,34 @@ for i in range(5):
             d = a + b + c
             if d // 100:
                 print(d)
+
+
+
+#  所以像：123，132，213，231，312，321都算是重复的数吗？
+dic = {}
+for i in range(1, 5):
+    a = i * 100
+    for j in range(1, 5):
+        b = j * 10
+        for q in range(1, 5):
+            c = q
+            x = i + j + q
+            d = a + b + c
+            dic[x] = d
+for value in dic.values():
+    print(value)
+    
+    
+dic = {}
+for i in range(5):
+    a = i*100
+    for j in range(5):
+        b = j*10
+        for q in range(5):
+            c = q
+            x = i + j + q
+            d = a + b + c
+            if d // 100:
+                dic[x] = d
+for value in dic.values():
+    print(value)
