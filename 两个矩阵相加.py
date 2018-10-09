@@ -11,14 +11,33 @@ Y = [[5, 8, 1],
 # fir_0 = X[0][0] + Y[0][0]
 # fir_1 = X[0][1] + Y[0][1]
 # print(fir_0, fir_1)
-li = []
 
+li = []
+# 这里我们可以直接把上面给出的X或者Y里面的内容给替换掉，这样就不必申请新的空间，
+# 在资源上更加节约，
 for i in range(3):
     l = []
     for j in range(3):
         obj = X[i][j] + Y[i][j]
         l.append(obj)
     li.append(l)
-print(li)
+
+# a = 0
+# for i in li:
+#     if a == 0:
+#         print("[" + str(i) + ",")
+#     elif a == 1:
+#         print(str(i) + ",")
+#     else:
+#         print(str(i) + "]")
+#     a += 1
+
+# '''
+print('[', end='')  # 这里可以在print里面直接加上所要打印的参数即可，用逗号分割
+for i in li[0:-1]:  # 循环可以用切片也可以用range（len（li）-1）
+    print(i, ',', sep='')
+print(li[-1], ']', sep='', end="")  # 这里打印列表的最后一行，把多余的空格和换行都去掉
+# '''
+
 
 
