@@ -1,0 +1,96 @@
+# 初阶版
+li = []
+
+
+def str_spl(obj, ret):
+    """
+    用递归实现split方法，不过暂时只能用一个字符分割，还不能用多个字符分割
+    :param obj: 传入字符串
+    :param ret: 所需要分割的字符
+    :return: 最后返回一个列表存放分割后的字符串
+    """
+    for i in range(len(obj)):
+        if obj[i] == ret:
+            str_obj = obj[:i]
+            str_obj0 = obj[i + 1:]
+            li.append(str_obj)
+            if obj[0] != ret:
+                li.append('')
+            str_spl(str_obj0, ret)
+            return li
+        elif ret not in obj:
+            li.append(obj)
+            return li
+        elif obj == ret:
+            li.append('')
+            return li
+
+
+def split(aim, flag):
+    """
+    用非递归的方法实现split，仅限分隔符为一个字符的
+    :param aim: 字符串
+    :param flag: 分隔符
+    :return: 返回一个列表里面是分割后的字符串
+    """
+    res = []
+    obj = ''
+    for c in aim:
+        if c == flag:
+            res.append(obj)
+            if obj != "":
+                obj = ''
+                res.append(obj)
+        else:
+            obj += c
+    if obj != "":
+        res.append(obj)
+    return res
+
+
+str_o = 'gvhgvhggs'
+ret_obj = split(str_o, 'h')
+# str_obj = str_spl(str_o, 'h')
+# print('str_spl', str_obj)
+print('split', ret_obj)
+
+
+
+# 终极版
+li = []
+
+
+def str_spl(str_obj, ret):
+    """
+    用递归实现split方法
+    :param obj: 传入字符串
+    :param ret: 所需要分割的字符
+    :return: 最后返回一个列表存放分割后的字符串
+    """
+    if ret == '':
+        raise ValueError("empty separator")
+    elif ret in str_obj:
+        index_str = str_obj.index(ret)
+        front_str = str_obj[:index_str]
+        li.append(front_str)
+        if len(str_obj) - len(front_str) > len(ret):
+            behind_str = str_obj[index_str + len(ret):]
+        else:
+            li.append("")
+            return li
+        if index_str != 0 and str_obj != ret:
+            li.append("")
+        str_spl(behind_str, ret)
+        return li
+    elif ret not in str_obj:
+        li.append(str_obj)
+        return li
+    elif ret == str_obj:
+        li.append("")
+        return li
+
+
+str_obj = 'gbhgbbhgsidbhg'
+ret = str_spl(str_obj, 'bhg')
+print(ret)
+
