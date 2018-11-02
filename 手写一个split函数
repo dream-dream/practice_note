@@ -14,15 +14,12 @@ def str_spl(obj, ret):
             str_obj = obj[:i]
             str_obj0 = obj[i + 1:]
             li.append(str_obj)
-            if obj[0] != ret:
+            if obj[i:] == ret:
                 li.append('')
             str_spl(str_obj0, ret)
             return li
-        elif ret not in obj:
+        elif not ret in obj:
             li.append(obj)
-            return li
-        elif obj == ret:
-            li.append('')
             return li
 
 
@@ -38,8 +35,8 @@ def split(aim, flag):
     for c in aim:
         if c == flag:
             res.append(obj)
-            if obj != "":
-                obj = ''
+            obj = ''
+            if c == aim[-1]:
                 res.append(obj)
         else:
             obj += c
@@ -48,10 +45,10 @@ def split(aim, flag):
     return res
 
 
-str_o = 'gvhgvhggs'
-ret_obj = split(str_o, 'h')
-# str_obj = str_spl(str_o, 'h')
-# print('str_spl', str_obj)
+str_o = 'gvhgvhgs'
+str_obj = str_spl(str_o, 'h')
+ret_obj = split(str_o, 's')
+print('str_spl', str_obj)
 print('split', ret_obj)
 
 
@@ -75,22 +72,50 @@ def str_spl(str_obj, ret):
         li.append(front_str)
         if len(str_obj) - len(front_str) > len(ret):
             behind_str = str_obj[index_str + len(ret):]
-        else:
+            str_spl(behind_str, ret)
+            return li
+        elif ret == str_obj[index_str:]:
             li.append("")
             return li
-        if index_str != 0 and str_obj != ret:
-            li.append("")
-        str_spl(behind_str, ret)
-        return li
     elif ret not in str_obj:
         li.append(str_obj)
         return li
-    elif ret == str_obj:
-        li.append("")
-        return li
 
 
-str_obj = 'gbhgbbhgsidbhg'
-ret = str_spl(str_obj, 'bhg')
-print(ret)
+def split(aim, flag, end_index=0):
+    """
+    用非递归的方法实现split，设立两个指针，一个指向分隔符的第一个字符，
+    另一个指向分隔符的最后一个字符
+    :param aim: 字符串
+    :param flag: 分隔符
+    :param end_index: 分隔符最后一个字符在字符串中的索引
+    :return: 返回一个列表里面是分割后的字符串
+    """
+    res = []
+    obj = ''
+    length_flag = len(flag)
+    for index_num in range(len(aim)):
+        if index_num < end_index:
+            # 当分隔符的最后一个元素的索引有值时，字符串遍历时就跳过分隔符的元素，
+            # 并给obj重新赋值
+            obj = ""
+            continue
+
+        if aim[index_num] == flag[0]:
+            if flag == aim[index_num:index_num + length_flag]:
+                end_index = index_num + length_flag
+                res.append(obj)
+                obj = ''
+        if aim[index_num] != flag:
+            # 这里的判断是在分隔符为一个元素的情况下，obj就不能把分隔符加上
+            obj += aim[index_num]
+    res.append(obj)
+    return res
+
+
+str_obj = 'gbhgbhpgb'
+ret = str_spl(str_obj, 'b')
+print('str_spl', ret)
+print('split', split(str_obj, 'b'))
+
 
