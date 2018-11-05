@@ -3,3 +3,25 @@
 问笼中各有多少只🐰和多少只🐔
 """
 # 先用数学方法想出来，然后再转换成编程语言，就会快很多。
+
+
+def get_each_ani_sum(heads, feet):
+    """
+    因为暂时还想不到数学方法，所以就只能先遍历，用两层循环来实现功能
+    :param heads: 总头数
+    :param feet: 总脚数
+    :return: 多少只🐰，多少只🐔
+    """
+
+    rabbit_foot = 4
+    poult_foot = 2
+    for i in range(1, heads + 1):
+        for j in range(1, heads + 1):
+            if i + j == heads and rabbit_foot * i + poult_foot * j == feet:
+                return "共有{}只兔子和{}只鸡".format(i, j)
+
+
+ret = get_each_ani_sum(35, 94)
+print(ret)
+
+# 共有12只兔子和23只鸡
