@@ -12,9 +12,10 @@ def get_sum_of_kinds_to_buy(arg):
     for i in range(1, arg+1):
         for j in range(1, arg+1):
             for q in range(1, arg+1):
-                if i*5 + j*3 + q/3 == 100:
+                if i+j+q==100 and i*5 + j*3 + q/3 == 100:
                     print("可以买{}只公鸡和{}只母鸡还有{}只小鸡".format(i, j, q))
                     sum_kinds +=1
                     return sum_kinds
 ret = get_sum_of_kinds_to_buy(100)
 print(ret)
+# 可以买4只公鸡和18只母鸡还有78只小鸡
