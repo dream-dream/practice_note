@@ -1,4 +1,117 @@
 # 自己实现一个堆栈，根据堆栈的特性，把类写出来，然后把里面的方法写出来
+# 这里是用简单的逻辑处理的
+class Stack(object):
+    def __init__(self, arg):
+        """
+        初始化一个栈
+        :param arg:栈的大小
+        """
+        self.arg = arg
+        self.vessel = []
+
+    def pop_stack(self):
+        """
+        如果栈有值，则出栈
+        :return: 出栈
+        """
+        if self.is_empty() is True:
+            raise Exception("there is already empty")
+        else:
+            self.vessel.pop()
+            return self.vessel
+
+    def push_stack(self, item):
+        """
+        :param item:
+        :return:入栈
+        """
+        if self.is_full() is True:
+            raise Exception("栈溢出")
+        else:
+            self.vessel.append(item)
+            return self.vessel
+
+    def is_empty(self):
+        """
+        判断栈是否为空
+        :return: 返回bool值
+        """
+        return True if len(self.vessel) == 0 else False
+
+    def is_full(self):
+        """
+        检查是否为满
+        :return: 返回bool值
+        """
+        return True if len(self.vessel) == self.arg else False
+
+
+obj = Stack(5)
+
+# obj.push_stack(50)
+# print(obj.pop_stack())
+# obj.pop_stack()
+obj.push_stack(10)
+# obj.pop_stack()
+obj.push_stack(15)
+
+# obj.push_stack(22)
+print(obj.vessel, obj.is_empty())
+
+
+
+# 根据队列的特性，实现一个队列，遵循先进后出，把出入口分开即可，根据上面的逻辑实现
+
+
+class QueuePiple():
+    
+    def __init__(self, size):
+        self.size = size
+        self.conduit = []
+
+    def push(self, item):
+        if self.is_full() is True:
+            raise Exception("there is already full")
+        else:
+            self.conduit.append(item)
+            return self.conduit
+
+    def pop(self):
+        if self.is_empty() is True:
+            raise Exception("there is already empty")
+        else:
+            self.conduit.remove(self.conduit[0])
+            return self.conduit
+
+    def is_empty(self):
+        return True if len(self.conduit) == 0 else False
+
+    def is_full(self):
+        return True if len(self.conduit) == self.size else False
+
+    def get_size(self):
+        return len(self.conduit)
+
+
+q_obj = QueuePiple(3)
+q_obj.push(2)
+q_obj.push(20)
+q_obj.push(209)
+q_obj.pop()
+# q_obj.pop()
+# q_obj.pop()
+q_obj.push(270)
+q_obj.pop()
+# q_obj.pop()
+q_obj.pop()
+# q_obj.pop()
+q_obj.push(277)
+print("hole thing", q_obj.conduit, q_obj.get_size())
+
+
+#################################################################################################################
+'''
+这里是骚操作，不是很好理解
 class Stack(object):
     def __init__(self, arg):
         """
@@ -59,8 +172,11 @@ obj.push_stack(12)
 obj.push_stack(12)
 # obj.push_stack(12)
 print(obj.vessel,obj.top_heap)
+'''
 
-
+‘’‘
+这里的队列实现逻辑是按照上面的那个栈的骚操作来实现的，有bug，而且队列两边如果要来回转换索引的话，逻辑很复杂而且不好理解，可读性也太差了，
+暂时不打算修复bug了。
 # 根据队列的特性，实现一个队列，先进先出原则，还有就是出入分离，这两个特性。
 class Queue_piple():
     def __init__(self, size):
@@ -100,6 +216,6 @@ q_obj.push(270)
 q_obj.push(277)
 
 print("hole thing", q_obj.conduit, q_obj._inside)
-
+’‘’
 
 
