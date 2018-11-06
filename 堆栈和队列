@@ -1,0 +1,63 @@
+# 自己实现一个堆栈，根据堆栈的特性，把类写出来，然后把里面的方法写出来
+class Stack(object):
+    def __init__(self, arg):
+        """
+        初始化一个栈
+        :param arg:栈的大小
+        """
+        self.arg = arg
+        self.vessel = [0 for i in range(arg)]  # 栈所用的容器,返回值是0，
+        # 才表明是一个空容器，否则如果返回i则是一个填满的容器
+        self.top_heap = 0  # 栈顶标示
+
+    def is_empty(self):
+        """
+        判断栈是否为空
+        :return: 返回bool值
+        """
+        return False if self.arg > 0 else True
+
+    def pop_stack(self):
+        """
+        如果栈有值，则出栈
+        :return: 出栈
+        """
+        if self.top_heap <= 0:
+            return "there is empty"
+        else:
+            # 这里要让栈顶移动位置，而不是直接用列表的pop方法，那样会改变容器的大小，
+            self.top_heap -= 1 
+            return self.vessel, self.vessel[self.top_heap]
+
+    def push_stack(self, item):
+        """
+        :param item:
+        :return:入栈
+        """
+        if self.top_heap + 1 > self.arg:
+            raise Exception("栈溢出")
+        else:
+            # 同样这里是用赋值的方式，也是为了不改变容器的大小
+            self.vessel[self.top_heap] = item
+            self.top_heap += 1
+            return self.vessel
+
+
+obj = Stack(5)  
+
+# obj.push_stack(50)
+obj.pop_stack()
+# obj.pop_stack()
+# obj.pop_stack()
+# obj.pop_stack()
+# obj.pop_stack()
+obj.push_stack(10)
+obj.push_stack(13)
+obj.push_stack(12)
+obj.push_stack(12)
+obj.push_stack(12)
+# obj.push_stack(12)
+print(obj.vessel,obj.top_heap)
+
+
+
