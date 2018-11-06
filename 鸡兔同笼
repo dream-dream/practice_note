@@ -41,3 +41,30 @@ ret = get_each_ani_sum(35, 94)
 print(ret)
 
 # 共有23只兔子和12只鸡
+
+
+# 用lambda表达式解决鸡兔同笼问题，所用到的是初中数学知识
+"""
+方程组理论基础
+a1x+b1y+c1=0
+a2x+b2y+c2=0
+
+鸡兔同笼
+1）x+y=c1   #问题中的头即为c1
+2）2x+4y=c2  #问题中的足即为c2
+
+由上2）/2得到
+3）x+2y=c2/2
+让3）减1）消元得到
+4）y=c2/2-c1
+把4）带回1）中得到
+5）x=c1-c2/2+c1=2c1-c2/2
+然后这里函数可以写成这样
+def func（head，foot）：
+    return '兔子有%s只，鸡有%s只' % （2*head-foot/2，foot/2-head）
+简化成lambda表达式：
+lambda head，foot：2*head-foot/2，foot/2-head
+
+"""
+ret = lambda head, foot: '兔子有{}只，鸡有{}只'.format(2 * head - foot // 2, foot // 2 - head)
+print(ret(35, 94))
