@@ -27,7 +27,7 @@ class Stack(object):
         else:
             # 这里要让栈顶移动位置，而不是直接用列表的pop方法，那样会改变容器的大小，
             self.top_heap -= 1
-            self.vessel[self.top_heap] = 0
+            self.vessel[self.top_heap] = None
             return self.vessel, self.vessel[self.top_heap]
 
     def push_stack(self, item):
@@ -59,6 +59,48 @@ obj.push_stack(12)
 obj.push_stack(12)
 # obj.push_stack(12)
 print(obj.vessel,obj.top_heap)
+
+
+# 根据队列的特性，实现一个队列，先进先出原则，还有就是出入分离，这两个特性。
+class Queue_piple():
+    def __init__(self, size):
+        self.size = size
+        self.conduit = [0 for i in range(self.size)]
+        self._inside = 0
+        self._outside = 0
+
+    def push(self, item):
+        if self._inside + 1 >= self.size and self.conduit[0] is None:
+            self._inside = 0
+
+        elif self._inside + 1 > self.size:
+            raise Exception("sorry, there is already full")
+        self.conduit[self._inside] = item
+        self._inside += 1
+        print(self.conduit)
+        return self.conduit
+
+    def pop(self):
+        if self._outside + 1 > self.size:
+            raise Exception("sorry, there is already empty")
+        else:
+            self.conduit[self._outside] = None
+            self._outside += 1
+            # self._inside -= 1
+            return self.conduit
+
+
+q_obj = Queue_piple(3)
+q_obj.push(2)
+q_obj.push(20)
+q_obj.push(209)
+q_obj.pop()
+q_obj.pop()
+# q_obj.pop()
+q_obj.push(270)
+q_obj.push(277)
+
+print("hole thing", q_obj.conduit, q_obj._inside)
 
 
 
