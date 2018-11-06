@@ -86,7 +86,6 @@ class Queue_piple():
         else:
             self.conduit[self._outside] = None
             self._outside += 1
-            # self._inside -= 1
             return self.conduit
 
 
