@@ -26,7 +26,8 @@ class Stack(object):
             return "there is empty"
         else:
             # 这里要让栈顶移动位置，而不是直接用列表的pop方法，那样会改变容器的大小，
-            self.top_heap -= 1 
+            self.top_heap -= 1
+            self.vessel[self.top_heap] = 0
             return self.vessel, self.vessel[self.top_heap]
 
     def push_stack(self, item):
