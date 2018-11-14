@@ -29,3 +29,55 @@ def get_sum_rabbit(arg):
 
 
 get_sum_rabbit(100)
+
+
+# 有进阶版，如果是从出生后第《4》个月起生一《只》兔子呢？
+"""
+兔子问题进阶版，如果是从第4个月开始生小兔子，然后每个月只生1只兔子呢，不考虑雌雄问题，
+假设雌雄是绝对均等，问每个月兔子总数分别是多少
+"""
+
+
+def get_sum_rabbit(arg):
+    first_born_rabbit = 2
+    second_born_rabbit = 0
+    third_born_rabbit = 0
+    grown_up_rabbit = 0
+    for i in range(1, arg + 1):
+        if i == 1:
+            last_sum_rabbit = first_born_rabbit + second_born_rabbit + third_born_rabbit + grown_up_rabbit
+        elif i == 2:
+            second_born_rabbit = first_born_rabbit
+            first_born_rabbit = 0
+            last_sum_rabbit = first_born_rabbit + second_born_rabbit + third_born_rabbit + grown_up_rabbit
+        elif i == 3:
+            third_born_rabbit = second_born_rabbit
+            second_born_rabbit = 0
+            last_sum_rabbit = first_born_rabbit + second_born_rabbit + third_born_rabbit + grown_up_rabbit
+        elif i == 4:
+            grown_up_rabbit = third_born_rabbit
+            third_born_rabbit = 0
+            first_born_rabbit = grown_up_rabbit // 2
+            last_sum_rabbit = first_born_rabbit + second_born_rabbit + third_born_rabbit + grown_up_rabbit
+
+        elif i == 5:
+            second_born_rabbit = first_born_rabbit
+            first_born_rabbit = grown_up_rabbit // 2
+            last_sum_rabbit = first_born_rabbit + second_born_rabbit + third_born_rabbit + grown_up_rabbit
+        elif i == 6:
+            second_born_rabbit = first_born_rabbit
+            third_born_rabbit = second_born_rabbit
+            first_born_rabbit = grown_up_rabbit // 2
+            last_sum_rabbit = grown_up_rabbit + third_born_rabbit + second_born_rabbit + first_born_rabbit
+        else:
+            second_born = first_born_rabbit
+            third_born = second_born_rabbit
+            grown_up_rabbit += third_born_rabbit
+            first_born_rabbit = grown_up_rabbit // 2
+            last_sum_rabbit = first_born_rabbit + second_born + third_born + grown_up_rabbit
+            second_born_rabbit = second_born
+            third_born_rabbit = third_born
+        print('第%s个月兔子的总数为---%s只' % (i, last_sum_rabbit))
+
+
+get_sum_rabbit(20)
