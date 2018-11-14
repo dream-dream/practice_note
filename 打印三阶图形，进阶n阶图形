@@ -1,0 +1,34 @@
+# 这里是生生拼出来的
+emp = ' '
+star = '*'
+first = emp * 4 + star
+second = emp * 2 + (star + emp) * 3
+third = (star + emp) * 5
+obj = first + '\n' + second + '\n'
+ret = first + '\n' + second + '\n' + third + '\n' + second + '\n' + first
+print(ret)
+
+# 这里写成函数，就是n阶图形，n作为参数传入进去
+def get_pic(arg):
+    star = '*'
+    empty = ' '
+    blank_sum = 2 * arg
+    start_sum = 1
+    for i in range(1, arg + 1):
+        if i > 1:
+            start_sum += 2
+        blank_sum -= 2
+        ret = empty * blank_sum + (star + empty) * start_sum + \
+              blank_sum * empty
+        print(ret)
+    for i in range(arg - 1, 0, -1):
+        start_sum -= 2
+        blank_sum += 2
+        ret = empty * blank_sum + (star + empty) * start_sum + \
+              empty * blank_sum
+        print(ret)
+
+
+
+
+get_pic(5)
