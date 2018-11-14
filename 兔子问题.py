@@ -42,36 +42,17 @@ def get_sum_rabbit(arg):
     second_born_rabbit = 0
     third_born_rabbit = 0
     grown_up_rabbit = 0
+
     for i in range(1, arg + 1):
-        if i == 1:
-            pass
-        elif i == 2:
-            second_born_rabbit = first_born_rabbit
-            first_born_rabbit = 0
-        elif i == 3:
-            third_born_rabbit = second_born_rabbit
-            second_born_rabbit = 0
-        elif i == 4:
-            grown_up_rabbit = third_born_rabbit
-            third_born_rabbit = 0
-            first_born_rabbit = grown_up_rabbit // 2
-        elif i == 5:
-            second_born_rabbit = first_born_rabbit
-            first_born_rabbit = grown_up_rabbit // 2
-        elif i == 6:
-            second_born_rabbit = first_born_rabbit
-            third_born_rabbit = second_born_rabbit
-            first_born_rabbit = grown_up_rabbit // 2
-        else:
-            second_born = second_born_rabbit
-            third_born = third_born_rabbit
-            second_born_rabbit = first_born_rabbit
-            third_born_rabbit = second_born
-            grown_up_rabbit += third_born
-            first_born_rabbit = grown_up_rabbit // 2
         last_sum_rabbit = grown_up_rabbit + third_born_rabbit + second_born_rabbit + first_born_rabbit
+        grown_up_rabbit += third_born_rabbit
+        third_born_rabbit = second_born_rabbit
+        second_born_rabbit = first_born_rabbit
+        first_born_rabbit = grown_up_rabbit // 2
+
         print('第%s个月兔子的总数为---%s只' % (i, last_sum_rabbit))
 
 
-get_sum_rabbit(100)
+get_sum_rabbit(20)
+
 
