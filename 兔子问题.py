@@ -3,7 +3,6 @@
 为多少？(不超过100个月)。
 有进阶版，如果是从出生后第《4》个月起生一《只》兔子呢？
 """
-
 '''
 第一个月是两只小兔子，我们就不考虑近亲结婚生子这样的伦理问题了，他们二🐰需要成长三个月
 才能开始繁衍后代，这前两个月都是两只🐰，从第三个月开始他们能生一对🐰就是4只，第四个月是6只，
@@ -12,23 +11,23 @@
 
 
 def get_sum_rabbit(arg):
+    """
+    计算每个月兔子总数量
+    :param arg:月份 
+    :return: 每个月兔子总数
+    """
+    first_born_rabbit = 2
+    second_born_rabbit = 0
+    grown_up_rabbit = 0
     for i in range(1, arg + 1):
-        two_grow_rabbit = 2
-        if i < 3:
-            print('第{}个月兔子的总数为---{}'.format(i, 2))
-        else:
-            div_obj, mod_obj = divmod((i - 2), 2)
-            if div_obj < 1:
-                pass
-            else:
-                for j in range(1, div_obj + 1):
-                    two_grow_rabbit += (i - j * 2) * 2
-            two_grow_rabbit += mod_obj * 2
-            print('第%s个月兔子的总数为---%s' % (i, two_grow_rabbit))
-    return
+        last_sum_rabbit = first_born_rabbit + second_born_rabbit + grown_up_rabbit
+        grown_up_rabbit += second_born_rabbit
+        second_born_rabbit = first_born_rabbit
+        first_born_rabbit = grown_up_rabbit
+        print('第{}个月兔子的总数为---{}只'.format(i, last_sum_rabbit))
 
 
-get_sum_rabbit(100)
+get_sum_rabbit(11)
 
 
 """
@@ -38,6 +37,11 @@ get_sum_rabbit(100)
 
 
 def get_sum_rabbit(arg):
+    """
+    计算每个月兔子总数量
+    :param arg:月份 
+    :return: 每个月兔子总数
+    """
     first_born_rabbit = 2
     second_born_rabbit = 0
     third_born_rabbit = 0
