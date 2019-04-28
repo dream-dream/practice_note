@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+
+</head>
+<body>
+<table border="1">
+    <thead>
+    <tr>
+        <th>class</th>
+        <th>teacher</th>
+        <th>button</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr id="number1tr">
+        <td>python</td>
+        <td>wusir</td>
+        <td>
+            <button id="add" onclick="plus()" type="button">add</button>
+            <button id="edit" onclick="edit()">edit</button>
+            <button id="delete" onclick="del()">delete</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<script>
+    //原生js不需要引入文件，直接写即可；jquery需要引入文件才能生效
+    function plus() {
+        // alert("hello");
+        let tbody = document.getElementsByTagName("tbody")[0];
+        let tr = document.createElement("TR");
+        tr.setAttribute("class", "second-tbody");
+        let tdclass = document.createElement("TD");
+        let tdc = document.createTextNode("java");
+        tdclass.appendChild(tdc);
+        let tdtea = document.createElement("TD");
+        let tdt = document.createTextNode("egon");
+        tdtea.appendChild(tdt);
+        tr.appendChild(tdclass);
+        tr.appendChild(tdtea);
+        tbody.appendChild(tr);
+
+        // document.getElementById("tbody").appendChild();
+    }
+
+    function edit() {
+        let setbody = document.getElementsById("number1tr");
+
+    }
+
+    function del() {
+        try {
+            let setbody = document.getElementsByClassName("second-tbody")[0];
+            console.log(setbody);
+            console.log(setbody);
+            let tbody = document.getElementsByTagName("tbody")[0];
+            if(setbody === undefined)  throw alert("nothing to delete");
+            tbody.removeChild(setbody)
+        } catch (e) {
+            console.log(e)
+        }
+
+    }
+</script>
+</body>
+</html>
+
