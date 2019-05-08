@@ -1,0 +1,31 @@
+def fib():
+    a = 1
+    b = 2
+    while True:
+        c = a + b
+        yield c
+        a = c + b
+        yield a
+        b = a + c
+        yield b
+
+
+obj = fib()
+print(next(obj))
+print(next(obj))
+print(next(obj))
+print(next(obj))
+print(next(obj))
+print(next(obj))
+print(next(obj))
+
+
+
+############################################################################################################
+def fib(n):
+    if n == 1 or n == 2:
+        return 1
+    return fib(n-1) + fib(n-2)
+fib(n)
+
+print(fib(100))
