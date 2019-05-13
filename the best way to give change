@@ -1,0 +1,17 @@
+there are some face-value of cash,when someone give you a number you got the best way to give the change back
+li = [100, 50, 20, 10, 5, 1] # face-value of cash
+
+
+def change(arg):
+    finally_l = []
+    for cash in li:
+        divisor, remainder = divmod(arg, cash)
+        if remainder > 0:
+            arg = remainder
+        finally_l.append(divisor)
+    finally_l.reverse()
+    return finally_l
+
+
+ret = change(78)
+print(ret)
